@@ -13,6 +13,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
 import visualizer from 'rollup-plugin-visualizer';
 import string from 'rollup-plugin-string';
+import builtins from 'rollup-plugin-node-builtins';
+import strip from 'rollup-plugin-strip';
 
 import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
@@ -150,6 +152,7 @@ export default function(mode) {
       string({
         include: '**/*.svg',
       }),
+      builtins(),
       postcss({
         plugins: [
           cssnano(),
@@ -165,6 +168,14 @@ export default function(mode) {
       }),
       visualizer({
         filename: `bundle-size/${mode}.html`,
+      }),
+      strip({
+        // set this to `false` if you don't want to
+        // remove debugger statements
+        debugger: true,
+
+        // defaults to `[ 'console.*', 'assert.*' ]`
+        functions: [ 'console.log', 'assert.*', 'debug', 'alert' ],
       }),
     ],
   };
