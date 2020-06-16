@@ -1,7 +1,8 @@
 import Chimee from 'chimee';
-import { isObject, isArray, Log } from 'chimee-helper';
+import { isObject, isArray, Log, deepAssign } from 'chimee-helper';
 import chimeeControl from 'chimee-plugin-mobile-controlbar/src';
 import chimeeState from 'chimee-plugin-mobile-state/src';
+import chimeeKernelHls from '@gem-mine/chimee-kernel-hls';
 import gestureFactory from 'chimee-plugin-gesture';
 import { uiIsAvailable, reduceArray } from './util.js';
 const DEFAULT_DISABLE_UA = [];
@@ -33,7 +34,14 @@ class ChimeeMobilePlayer extends Chimee {
     // 添加UI插件
     if (isUIAvailable) handlePlugins(config);
 
+    // native 表示使用机器浏览器自带的 hls 解码
     config.box = config.box === undefined ? 'native' : config.box;
+    // 添加hls核心库
+    config.kernels = deepAssign(config.kernels || {}, {
+      hls: {
+        handler: chimeeKernelHls,
+      },
+    });
 
     super(config);
     this.hlsWarn(this.box);

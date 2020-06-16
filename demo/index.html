@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ChimePlayer Demo</title>
+    <title>ChimeMobilePlayer Demo</title>
     <meta charset="utf-8">
     <meta name="description" content="ChimePlayer Demo">
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
@@ -33,36 +33,36 @@
             video .media-controls-container{
                 display: none;
             }
-                
+
     </style>
 </head>
 <body>
 
     <header>
-        <h1>ChimePlayer Demo</h1>
+        <h1>ChimeMobilePlayer Demo</h1>
         <p id="tabs_box">
             Shortcuts:
             <button type="button"
-            data-type="vod" 
+            data-type="vod"
             data-src="http://cdn.toxicjohann.com/lostStar.mp4"
             >VOD-MP4</button>
-            <button type="button" 
+            <button type="button"
             data-type="vod"
             data-src="http://yunxianchang.live.ujne7.com/vod-system-bj/44_176_20170224113626af3a75cd-3508-4bc3-b51f-366fca3c7e39.m3u8"
             >VOD-HLS</button>
-            <button type="button" 
-            data-type="live" 
+            <button type="button"
+            data-type="live"
             data-src="http://ph.live.360vcloud.net/live_customers3/605d90cc6203e78e7ec9/index.m3u8"
             >LIVE-HLS</button>
         </p>
         <p>
-            type: 
+            type:
             <select id="type">
                 <option value="vod">vod</option>
                 <option value="live">live</option>
             </select>
             &nbsp; &nbsp;
-            src: 
+            src:
             <input type="text" id="src" value="http://cdn.toxicjohann.com/lostStar.mp4" size="50">
             <input type="hidden" id="poster">
             &nbsp; &nbsp;
