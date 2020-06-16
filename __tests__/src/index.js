@@ -1,4 +1,4 @@
-import ChimeeKernelHls from 'chimee-kernel-hls';
+import ChimeeKernelHls from '@gem-mine/chimee-kernel-hls';
 import { Log } from 'chimee-helper';
 
 import ChimeePlayer from 'index';
