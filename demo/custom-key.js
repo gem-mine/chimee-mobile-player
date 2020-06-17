@@ -51,51 +51,60 @@ $.ajax({
       var _sign = CryptoJS.enc.Utf8.parse(sign);
       var getKeyUrl = baseUrl_1 + "?nonce=" + nonce + "&sign=" + sign;
 
-      var _hlsCustomKey = {}
-      _hlsCustomKey.isCustomKey = true;
-      _hlsCustomKey.customKeyUrl = getKeyUrl;
-      _hlsCustomKey.customSign = _sign;
-      _hlsCustomKey.char2buf = function (str) {
-        var buf = new ArrayBuffer(str.length);
-        var bufView = new Uint8Array(buf);
-        for (var i = 0, strLen = str.length; i < strLen; i++) {
-          bufView[i] = str.charCodeAt(i);
-        }
-        return buf;
-      };
-      _hlsCustomKey.customDecrypt = function (key, sign) {
-        var dec = CryptoJS.AES.decrypt(key, sign, {
+      $.ajax({
+        url: getKeyUrl
+      }).then(function(data){
+        const key = data.key;
+        // 解密得到最终的秘钥
+        var dec = CryptoJS.AES.decrypt(key, _sign, {
           mode: CryptoJS.mode.ECB,
           padding: CryptoJS.pad.Pkcs7
         });
-        return dec.toString(CryptoJS.enc.Utf8);
-      };
+        const realKey = dec.toString(CryptoJS.enc.Utf8);
 
-      new ChimeeMobilePlayer({
-        // 播放地址
-        src: url,
-        // 直播:live 点播：vod
-        // isLive: type == 'live',
-        // 编解码容器
-        // poster: poster,
-        // dom容器
-        wrapper: '#wrapper',
-        // video
-        autoplay: false,
-        controls: true,
-        box: 'hls',
-        // muted: true,
-        kernels: {
-          hls: {
-            hlsCustomKey: {
-              ..._hlsCustomKey
+        function string2buffer(str) {
+          // 首先将字符串转为16进制
+          let val = ""
+          for (let i = 0; i < str.length; i++) {
+            if (val === '') {
+              val = str.charCodeAt(i).toString(16)
+            } else {
+              val += ',' + str.charCodeAt(i).toString(16)
             }
           }
-        },
-      });
+          // 将16进制转化为ArrayBuffer
+          return new Uint8Array(val.match(/[\da-f]{2}/gi).map(function (h) {
+            return parseInt(h, 16)
+          })).buffer
+        }
+        // _hls.loadSource(url);
+        // _hls.attachMedia($('#video')[0]);
+        new GemMineChimeeMobilePlayer({
+          // 播放地址
+          src: url,
+          // 直播:live 点播：vod
+          // isLive: type == 'live',
+          // 编解码容器
+          // poster: poster,
+          // dom容器
+          wrapper: '#wrapper',
+          // video
+          autoplay: false,
+          controls: true,
+          box: 'hls',
+          // muted: true,
+          kernels: {
+            hls: {
+              customKey: string2buffer(realKey)
+            }
+          },
+        });
+      })
+
+
     })
   } else {
-    new ChimeeMobilePlayer({
+    new GemMineChimeeMobilePlayer({
       // 播放地址
       src: url,
       // 直播:live 点播：vod
