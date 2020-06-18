@@ -12,7 +12,7 @@ export default Object.assign(config, {
   output: {
     format: 'umd',
     file: 'lib/index.dev.js',
-    name: camelize(name, true),
+    name: camelize(name, true).replace(/GemMine/g, ''),
     banner,
   },
 });

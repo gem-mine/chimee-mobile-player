@@ -7,6 +7,6 @@ export default Object.assign(config, {
     format: 'umd',
     file: 'lib/chimee-mobile-player.browser.js',
     banner,
-    name: camelize(name, true),
+    name: camelize(name, true).replace(/GemMine/g, ''),
   },
 });
