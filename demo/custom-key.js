@@ -18,7 +18,7 @@
 //   // removeInnerPlugins: ['chimeeMobiControlbar', 'chimeeState']
 // });
 
-const url = "http://v1-js.e.99.com/28398/video/35141211646846d8ac9aa8ec759ae416/0d22bb0a72b34ff69974c07cde42c3d9.v.640.384.mp4/secret.m3u8"
+const url = "http://v1-jd.tianyuimg.com/28398/video/35141211646846d8ac9aa8ec759ae416/0d22bb0a72b34ff69974c07cde42c3d9.v.640.384.mp4/secret.m3u8"
 $.ajax({
   url: url,
   bodyProxy: true,
@@ -79,7 +79,7 @@ $.ajax({
         }
         // _hls.loadSource(url);
         // _hls.attachMedia($('#video')[0]);
-        new GemMineChimeeMobilePlayer({
+        new ChimeeMobilePlayer({
           // 播放地址
           src: url,
           // 直播:live 点播：vod
@@ -104,7 +104,7 @@ $.ajax({
 
     })
   } else {
-    new GemMineChimeeMobilePlayer({
+    new ChimeeMobilePlayer({
       // 播放地址
       src: url,
       // 直播:live 点播：vod

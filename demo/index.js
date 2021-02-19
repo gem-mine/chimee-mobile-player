@@ -84,7 +84,7 @@
 // })
 player = new ChimeeMobilePlayer({
   // 播放地址
-  src: "https://v1-js.e.99.com/114/video/7903d15b397d4d65bcc698258318e19b/f87cd342781a469381291a9de5c9bc6f.v.854.480/f87cd342781a469381291a9de5c9bc6f.m3u8",
+  src: "https://v1-jd.tianyuimg.com/114/video/0e9b6600b3cf4ef182e8dff188efd7e1/d7d1e21210514795849b42a4abaedd24.v.854.480-1/d7d1e21210514795849b42a4abaedd24.m3u8",
   // 直播:live 点播：vod
   // isLive: type == 'live',
   // 编解码容器
@@ -95,11 +95,12 @@ player = new ChimeeMobilePlayer({
   autoplay: false,
   controls: true,
   muted: true,
-  kernels: {
-    hls: {
-      isCustomKey: true
-    }
-  },
+  box: 'hls',
+  // kernels: {
+    // hls: {
+    //   isCustomKey: false
+    // }
+  // },
   // box: 'native',
   // disableUA: [
   //   'Mozilla/5.0 (Linux; Android 4.4.2; HM NOTE 1TD Build/KOT49H; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.97 Mobile Safari/537.36',

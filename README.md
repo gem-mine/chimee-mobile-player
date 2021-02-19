@@ -89,3 +89,6 @@ new ChimeeMobilePlayer({
 如果要兼容低级手机浏览器的话， 需要引入 babel-polyfill
 
 *希望您用着方便，有相应问题请随时反馈。*
+
+TODO: https://github.com/Chimeejs/chimee-helper-utils/issues/4
+这个未发布 ，所以直接先编译放到 node_modules 里面，先发一个版本 0.1.2-beat.0
